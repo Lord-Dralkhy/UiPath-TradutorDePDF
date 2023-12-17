@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Obter_PDF" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Obter_PDF" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="out_PDFSelecionado" Type="OutArgument(x:String)" />
     <x:Property Name="out_PDFTipo" Type="OutArgument(x:String)" />
@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1498,827</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1498,1116</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Obter_PDF_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -45,6 +45,9 @@
       <x:String>UiPath.OCR.Contracts.Activities</x:String>
       <x:String>UiPath.Core.Activities.OCR.Engines</x:String>
       <x:String>UiPath.OCR.Activities</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -96,31 +99,70 @@
       <AssemblyReference>UiPath.OCR.Core</AssemblyReference>
       <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Contracts</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Sequância para selecionar o PDF que o usuário quer traduzir" DisplayName="Obter_PDF" sap:VirtualizedContainerService.HintSize="450,685" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Sequância para selecionar o PDF que o usuário quer traduzir" DisplayName="Obter_PDF" sap:VirtualizedContainerService.HintSize="496,1051" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:SelectFile sap2010:Annotation.AnnotationText="Aqui pede para o usuário escolher o arquivo, aí salva o local exato em uma variável" DisplayName="Obter o local do PDF" Filter="PDF |*.pdf" sap:VirtualizedContainerService.HintSize="388,180" sap2010:WorkflowViewState.IdRef="SelectFile_1" SelectedFile="[out_PDFSelecionado]">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:SelectFile>
-    <ui:InputDialog Options="{x:Null}" sap2010:Annotation.AnnotationText="Aqui é pedido ao usuário que escolha o tipo de PDF" DisplayName="Obter o tipo do PDF" sap:VirtualizedContainerService.HintSize="388,323" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Escolha o tipo de PDF" OptionsString="Nativo (Com texto selecionável);Digitalizado (Com textos não selecionáveis)" Title="Tipo de PDF">
-      <ui:InputDialog.Result>
-        <OutArgument x:TypeArguments="x:String">[out_PDFTipo]</OutArgument>
-      </ui:InputDialog.Result>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:InputDialog>
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="434,322" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <ui:SelectFile sap2010:Annotation.AnnotationText="Aqui pede para o usuário escolher o arquivo, aí salva o local exato em uma variável" DisplayName="Obter o local do PDF" Filter="PDF |*.pdf" sap:VirtualizedContainerService.HintSize="334,180" sap2010:WorkflowViewState.IdRef="SelectFile_1" SelectedFile="[out_PDFSelecionado]">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </ui:SelectFile>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:OperationCanceledException" sap:VirtualizedContainerService.HintSize="400,159" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:OperationCanceledException">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:OperationCanceledException" Name="exception" />
+            </ActivityAction.Argument>
+            <TerminateWorkflow DisplayName="Terminate Workflow" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_1" Reason="O usuário cancelou" />
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+    <ui:InterruptibleWhile CurrentIndex="{x:Null}" DisplayName="Obrigar o usuário a escolher uma opção" sap:VirtualizedContainerService.HintSize="434,547" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_2">
+      <ui:InterruptibleWhile.Body>
+        <Sequence DisplayName="Corpo" sap:VirtualizedContainerService.HintSize="376,411" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InputDialog Options="{x:Null}" sap2010:Annotation.AnnotationText="Aqui é pedido ao usuário que escolha o tipo de PDF" DisplayName="Obter o tipo do PDF" sap:VirtualizedContainerService.HintSize="334,323" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Escolha o tipo de PDF" OptionsString="Nativo (Com texto selecionável);Digitalizado (Com textos não selecionáveis)" Title="Tipo de PDF">
+            <ui:InputDialog.Result>
+              <OutArgument x:TypeArguments="x:String">[out_PDFTipo]</OutArgument>
+            </ui:InputDialog.Result>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InputDialog>
+        </Sequence>
+      </ui:InterruptibleWhile.Body>
+      <ui:InterruptibleWhile.Condition>
+        <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="out_PDFTipo = &quot;&quot;" />
+      </ui:InterruptibleWhile.Condition>
+    </ui:InterruptibleWhile>
   </Sequence>
 </Activity>
