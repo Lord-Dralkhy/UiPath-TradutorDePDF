@@ -5,7 +5,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1498,2519</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1498,1507</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>conversorPDFToWord_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -44,6 +44,9 @@
       <x:String>System.ComponentModel</x:String>
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
       <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Management.Automation</x:String>
+      <x:String>System.Dynamic</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -98,132 +101,61 @@
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>System.Management.Automation</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Acessa um site para converter o arquivo PDF em arquivo Word" DisplayName="conversorPDFToWord" sap:VirtualizedContainerService.HintSize="1112,2454" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Usa um aplicativo para converter o arquivo PDF em arquivo Word (.docx)" DisplayName="conversorPDFToWord" sap:VirtualizedContainerService.HintSize="1112,1442" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard DisplayName="Acessar o site que faz a conversao PDF para Word" sap:VirtualizedContainerService.HintSize="1050,2312" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" ScopeGuid="96b8f7e4-4645-4fef-9021-16afcc582e3e" WindowResize="Maximize">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application: Recursos\Conversor PDF para Word\conversorpdf2docx.exe" sap:VirtualizedContainerService.HintSize="1050,1300" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" ScopeGuid="8ed51fb0-7a2b-4580-9129-0b1ecbb112d5" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Fazer" sap:VirtualizedContainerService.HintSize="1016,2095" sap2010:WorkflowViewState.IdRef="Sequence_2">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="x:String" Name="temp_diretorioRaiz" />
-              <Variable x:TypeArguments="x:String" Name="temp_arquivo" />
-            </Sequence.Variables>
+          <Sequence DisplayName="Fazer" sap:VirtualizedContainerService.HintSize="1016,1009" sap2010:WorkflowViewState.IdRef="Sequence_14">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:MultipleAssign DisplayName="Separar o diretorio do nome do arquivo" sap:VirtualizedContainerService.HintSize="954,147" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
-              <ui:MultipleAssign.AssignOperations>
-                <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
-                    <ui:AssignOperation.To>
-                      <OutArgument x:TypeArguments="x:String">[temp_diretorioRaiz]</OutArgument>
-                    </ui:AssignOperation.To>
-                    <ui:AssignOperation.Value>
-                      <InArgument x:TypeArguments="x:String">[in_PDFSelecionado.Substring(0, in_PDFSelecionado.LastIndexOf("\") + 1)]</InArgument>
-                    </ui:AssignOperation.Value>
-                  </ui:AssignOperation>
-                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
-                    <ui:AssignOperation.To>
-                      <OutArgument x:TypeArguments="x:String">[temp_arquivo]</OutArgument>
-                    </ui:AssignOperation.To>
-                    <ui:AssignOperation.Value>
-                      <InArgument x:TypeArguments="x:String">[in_PDFSelecionado.Substring(in_PDFSelecionado.LastIndexOf("\") + 1)]</InArgument>
-                    </ui:AssignOperation.Value>
-                  </ui:AssignOperation>
-                </scg:List>
-              </ui:MultipleAssign.AssignOperations>
-            </ui:MultipleAssign>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Selecionar arquivo PDF'" sap:VirtualizedContainerService.HintSize="954,157" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="DebuggerApi" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="96b8f7e4-4645-4fef-9021-16afcc582e3e" Version="V3">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="https://www.ilovepdf.com/pt/pdf_para_word" CvElementArea="785, 450, 364, 85" CvTextArea="834, 481, 268, 23" CvTextArgument="Selecionar arquivo PDF" CvType="Button" DesignTimeRectangle="788, 453, 361, 80" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Carregue seu'" FullSelectorArgument="&lt;webctrl id='pickfiles' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl id='pickfiles' tag='A' type='' class='uploader__btn tooltip--left active' /&gt;" Guid="ceae5562-6019-47e5-aaf7-e74f82b631b5" ImageBase64="" InformativeScreenshot="ba0fc82bfaa6371b78a7bd7a3b628238.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive" />
-              </uix:NClick.Target>
-            </uix:NClick>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Locais Anteriores'" sap:VirtualizedContainerService.HintSize="954,157" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="96b8f7e4-4645-4fef-9021-16afcc582e3e" Version="V3">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable DesignTimeRectangle="705, 37, 20, 22" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Locais Anteriores'" FullSelectorArgument="&lt;wnd cls='ToolbarWindow32' title='Barra de ferramentas da faixa de endereços' /&gt;&lt;ctrl name='Barra de ferramentas da faixa de endereços' role='tool bar' /&gt;&lt;ctrl name='Locais Anteriores' role='push button' /&gt;" FuzzySelectorArgument="&lt;wnd cls='ToolbarWindow32' title='*' /&gt;&lt;ctrl name='*' role='tool bar' /&gt;&lt;ctrl role='push button' automationid='' /&gt;" Guid="64a19e03-8892-4503-97f3-74526bfe9da3" ImageBase64="" InformativeScreenshot="553bde23526408a5f686c869ac3b4719.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='#32770' title='*' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
-                  <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
-                      <uix:Target CvTextArea="153, 41, 448, 15" CvTextArgument="Este Computador Documentos UiPath Tradutor de PDF PDFs Exemplo" CvType="Text" DesignTimeRectangle="115, 37, 590, 22" ElementType="Toolbar" FriendlyName="'Endereço: C:\Users\Magn…'" FullSelectorArgument="&lt;wnd ctrlid='1001' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1001' /&gt;" SearchSteps="Selector, FuzzySelector" />
-                    </scg:List>
-                  </uix:TargetAnchorable.Anchors>
-                </uix:TargetAnchorable>
-              </uix:NClick.Target>
-            </uix:NClick>
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Diretório'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="954,218" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="HardwareEvents" ScopeIdentifier="96b8f7e4-4645-4fef-9021-16afcc582e3e" Text="[temp_diretorioRaiz + &quot;[k(enter)]&quot;]" Version="V3">
-              <uix:NTypeInto.Target>
-                <uix:TargetAnchorable CvElementArea="111, 36, 601, 23" CvType="InputBox" DesignTimeRectangle="115, 37, 590, 22" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'C:\Users\Magno\Document…'" FullSelectorArgument="&lt;wnd ctrlid='41477' /&gt;&lt;wnd ctrlid='41477' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='41477' /&gt;&lt;wnd ctrlid='41477' /&gt;" Guid="f07429d3-cc90-4428-a20e-9120792e504a" ImageBase64="" InformativeScreenshot="527021ca6b50e3463f695df9ab497d8b.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='#32770' title='*' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
-                  <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
-                      <uix:Target DesignTimeRectangle="705, 37, 20, 22" ElementType="Toolbar" FriendlyName="'Barra de'" FullSelectorArgument="&lt;wnd cls='ToolbarWindow32' title='*' /&gt;" FuzzySelectorArgument="&lt;wnd cls='ToolbarWindow32' title='*' /&gt;" SearchSteps="FuzzySelector" />
-                    </scg:List>
-                  </uix:TargetAnchorable.Anchors>
-                </uix:TargetAnchorable>
-              </uix:NTypeInto.Target>
-            </uix:NTypeInto>
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Nome do Arquivo'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="954,218" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="HardwareEvents" ScopeIdentifier="96b8f7e4-4645-4fef-9021-16afcc582e3e" Text="[temp_arquivo + &quot;[k(enter)]&quot;]" Version="V3">
-              <uix:NTypeInto.Target>
-                <uix:TargetAnchorable CvElementArea="176, 462, 560, 26" CvType="InputBox" DesignTimeRectangle="183, 469, 532, 15" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'Edit'" FullSelectorArgument="&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;" Guid="f7bd2e6a-48e2-4024-b5fb-027468213326" ImageBase64="" InformativeScreenshot="67722401300de7f03c19dbe089c1194a.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='#32770' title='*' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
-                  <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
-                      <uix:Target CvElementArea="716, 464, 20, 24" CvType="ArrowButton" DesignTimeRectangle="717, 464, 19, 24" ElementType="ArrowButton" FriendlyName="'chrome.exe Abrir'" SearchSteps="CV" TargetType="ComputerVisionBased" />
-                    </scg:List>
-                  </uix:TargetAnchorable.Anchors>
-                </uix:TargetAnchorable>
-              </uix:NTypeInto.Target>
-            </uix:NTypeInto>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Converter para WORD'" sap:VirtualizedContainerService.HintSize="954,157" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="96b8f7e4-4645-4fef-9021-16afcc582e3e" Version="V3">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="https://www.ilovepdf.com/pt/pdf_para_word" CvTextArea="1568, 972, 255, 22" CvTextArgument="Converter para WORD" CvType="Text" DesignTimeRectangle="1512, 942, 392, 82" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Converter para WORD'" FullSelectorArgument="&lt;webctrl id='processTask' tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl id='processTask' tag='BUTTON' type='' class='btn btn--process btn--red pdfoffice' /&gt;" Guid="80d5173b-dc0f-4ae8-82cd-60c8e92c1468" ImageBase64="" InformativeScreenshot="e1f8855a217e3e4f1465ced6599d6c69.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive" />
-              </uix:NClick.Target>
-            </uix:NClick>
-            <uix:NCheckState DisplayName="Check App State 'Salvar como'" sap:VirtualizedContainerService.HintSize="954,686" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="96b8f7e4-4645-4fef-9021-16afcc582e3e" Timeout="10" Version="V3">
+            <uix:NCheckState DisplayName="Verificar se os recursos estão disoníveis" sap:VirtualizedContainerService.HintSize="954,747" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="8ed51fb0-7a2b-4580-9129-0b1ecbb112d5" Timeout="15" Version="V3">
               <uix:NCheckState.IfExists>
-                <Sequence DisplayName="Destino aparece" sap:VirtualizedContainerService.HintSize="450,272" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                <Sequence DisplayName="Destino aparece" sap:VirtualizedContainerService.HintSize="450,530" sap2010:WorkflowViewState.IdRef="Sequence_15">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Salvar'" sap:VirtualizedContainerService.HintSize="388,157" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="96b8f7e4-4645-4fef-9021-16afcc582e3e" Version="V3">
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Digitar diretório do arquivo" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="388,218" sap2010:WorkflowViewState.IdRef="NTypeInto_5" ScopeIdentifier="8ed51fb0-7a2b-4580-9129-0b1ecbb112d5" Text="[in_PDFSelecionado.Substring(0, in_PDFSelecionado.LastIndexOf(&quot;.&quot;))]" Version="V3">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="18, 57, 368, 19" DesignTimeScaleFactor="1" FriendlyName="'TkChild'" FullSelectorArgument="&lt;wnd cls='TkChild' idx='4' /&gt;" FuzzySelectorArgument="&lt;wnd cls='TkChild' /&gt;" Guid="87adef20-0a47-4030-8560-66a7ac86d819" InformativeScreenshot="a3c77bc0822a348b9d0de299b172daea.png" ScopeSelectorArgument="&lt;wnd app='conversorpdf2docx.exe' cls='TkTopLevel' title='Escolher PDF' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive" />
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'OK'" sap:VirtualizedContainerService.HintSize="388,157" sap2010:WorkflowViewState.IdRef="NClick_9" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8ed51fb0-7a2b-4580-9129-0b1ecbb112d5" Version="V3">
                     <uix:NClick.Target>
-                      <uix:TargetAnchorable CvElementArea="746, 493, 89, 27" CvTextArea="773, 499, 34, 12" CvTextArgument="Salvar" CvType="Button" DesignTimeRectangle="747, 493, 88, 26" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'unchecked'" FullSelectorArgument="&lt;wnd ctrlid='1' title='*' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1' check:text='unchecked' /&gt;" Guid="b7108926-4619-4aa5-8b5b-9cf5020703ce" ImageBase64="" InformativeScreenshot="09f6ca1e24d9cc9c6b45fff530ad5a64.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='#32770' title='*' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
+                      <uix:TargetAnchorable DesignTimeRectangle="117, 86, 80, 26" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'unchecked'" FullSelectorArgument="&lt;wnd cls='Button' idx='2' /&gt;" FuzzySelectorArgument="&lt;wnd cls='Button' check:text='unchecked' /&gt;" Guid="2bc06801-ef00-4a1f-8e0f-017327cf37bb" InformativeScreenshot="678e78047a2093ff83c50bd249f2eaae.png" ScopeSelectorArgument="&lt;wnd app='conversorpdf2docx.exe' cls='TkTopLevel' title='Escolher PDF' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive" />
                     </uix:NClick.Target>
                   </uix:NClick>
                 </Sequence>
               </uix:NCheckState.IfExists>
               <uix:NCheckState.IfNotExists>
-                <Sequence DisplayName="Destino não aparece" sap:VirtualizedContainerService.HintSize="450,469" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                <Sequence DisplayName="Destino não aparece" sap:VirtualizedContainerService.HintSize="450,205" sap2010:WorkflowViewState.IdRef="Sequence_16">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Baixe o WORD'" sap:VirtualizedContainerService.HintSize="388,157" sap2010:WorkflowViewState.IdRef="NClick_4" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="96b8f7e4-4645-4fef-9021-16afcc582e3e" Version="V3">
-                    <uix:NClick.Target>
-                      <uix:TargetAnchorable BrowserURL="https://www.ilovepdf.com/pt/download/Ap3cbdhhnl9mnq7x9ntgqd6837gp7jy9n6b51k53dAtndqn9q10zv2zlft9vpltmhpn302d9Ajwcbp79v44rk8v0p159v4psn81p1mjz9Apr7sk86zwpz5snAt4m96l49yg04hvc9rgkf0976qt4xhnkbm03jAft0Akslrnz3l5mlm81r1w1/19o" CvTextArea="896, 369, 164, 23" CvTextArgument="Baixe o WORD" CvType="Text" DesignTimeRectangle="795, 341, 330, 80" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Baixe o WORD'" FullSelectorArgument="&lt;webctrl id='pickfiles' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl id='pickfiles' tag='A' type='' class='downloader__btn active' /&gt;" Guid="5b5cc9c4-7aaf-4093-8d8d-440420f64263" ImageBase64="" InformativeScreenshot="02e42ec9bd03ce92317f9a465324aac6.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive" />
-                    </uix:NClick.Target>
-                  </uix:NClick>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Salvar'" sap:VirtualizedContainerService.HintSize="388,157" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="96b8f7e4-4645-4fef-9021-16afcc582e3e" Version="V3">
-                    <uix:NClick.Target>
-                      <uix:TargetAnchorable CvElementArea="746, 493, 89, 27" CvTextArea="773, 499, 34, 12" CvTextArgument="Salvar" CvType="Button" DesignTimeRectangle="747, 493, 88, 26" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'unchecked'" FullSelectorArgument="&lt;wnd ctrlid='1' title='*' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1' check:text='unchecked' /&gt;" Guid="b7108926-4619-4aa5-8b5b-9cf5020703ce" ImageBase64="" InformativeScreenshot="09f6ca1e24d9cc9c6b45fff530ad5a64.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='#32770' title='*' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
-                    </uix:NClick.Target>
-                  </uix:NClick>
+                  <TerminateWorkflow DisplayName="Se a janela de interação demorar para aparescer" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_1" Reason="O conversor de PDF não funcionou" />
                 </Sequence>
               </uix:NCheckState.IfNotExists>
               <uix:NCheckState.Target>
-                <uix:TargetAnchorable DesignTimeRectangle="0, 0, 960, 539" DesignTimeScaleFactor="1" FriendlyName="'Salvar como'" Guid="e9e5afb9-ba7f-457c-97c8-03c16e63005d" InformativeScreenshot="71ff9b57c4a91e34b63e8c82959acc83.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='#32770' title='Salvar como' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                <uix:TargetAnchorable DesignTimeRectangle="0, 0, 404, 125" DesignTimeScaleFactor="1" FriendlyName="'Escolher PDF'" Guid="98c2e751-4bee-4eaf-b6e9-796883f8d89e" InformativeScreenshot="503a8b4d39926fa51dd970d84642c0ba.png" ScopeSelectorArgument="&lt;wnd app='conversorpdf2docx.exe' cls='TkTopLevel' title='Escolher PDF' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
                   <uix:TargetAnchorable.FuzzySelectorArgument>
                     <InArgument x:TypeArguments="x:String">
                       <Literal x:TypeArguments="x:String" Value="" />
@@ -232,12 +164,27 @@
                 </uix:TargetAnchorable>
               </uix:NCheckState.Target>
             </uix:NCheckState>
+            <ui:WaitUiElementVanish WaitNotActive="{x:Null}" WaitNotVisible="{x:Null}" DisplayName="Esperar a conclusão da conversão" sap:VirtualizedContainerService.HintSize="954,107" sap2010:WorkflowViewState.IdRef="WaitUiElementVanish_1">
+              <ui:WaitUiElementVanish.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ffe568e4-5942-4569-b892-3b71e015c9ee" InformativeScreenshot="6cfa169e1c0dc7e1afefb7de5c19bd43" Selector="&lt;wnd app='conversorpdf2docx.exe' cls='ConsoleWindowClass' title='*Recursos\Convers*' /&gt;" TimeoutMS="999999999">
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:WaitUiElementVanish.Target>
+            </ui:WaitUiElementVanish>
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="-8, -8, 1936, 1056" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAACnklEQVRYR+3XS0hUURzH8elJrcoeuxYRRKGpYyokFW2iTS2ChII2UYHRYxVaIrkNWhTYwx5Sm3a1aVWUbSOI6LFpVabO9HJK0jBirNP3dzv3cu9w5uGdmVb+4bMY557//8f1eu4xMVu5lWraIIuxBafRh/M4gSYshL26gqWmmIuduIdxmJA/+ITb2ARvTWjtPLSnGms7U8m6pfC+K6lsg0U4hQzCg13eYR/mQGt1x3pSzQ3jH7ZtnmZ4H5aUFMI2UKNOTME10OUzdkPru/Ez3Zo0EwPXTeZoR3a0fv3FkkLYBjughq5BhbzGGXzxPrc0mqnHgyY7OmLGOg4pxKWiIVi4APq9ugYUo+ciG3xWgMGHRpUdGiLEYYW4TID8zwQLGzAcNClHKIDKhpgmxJW8IVh4AL8ijeLKCaDKvifEES9EvzMEC3uhW+luOhOOAKqcEDWRECzswu9Io7jyBFCFQlyNhGCh/pR+RBrFVSCAKhTiWhCChavwItIoLi/AIzvOXdmRYZM51qHNSiFWKoCcizSKq7nBfO3uMhM3b3gbktOtAfOtt8ek21om2bbb/QDr8CpoVI5kraFxYck6k9pYf5frl/sBRM/CR7gbV9ZLNCJ4EEXvA71gUnAtqpTnaIM3Nyj7A4XYjqdwLS7HNHTb6xAd7pf/BdZAh5DcM0Fc2upPYhnstAKli6CX1C48gatpKfSiuoNWeGeHkksXW6vRj5mcFWQMOuDUwHaNUVoMnXiO4997v7g30N3TEc92KqPUxDbbi1G4hvqeIXJmrEj5DbEHabiG60+sBZUd7pffGAfxHeHhb7EV1Rnulx0wH2fhnyMmsR/VHe6XHbQCD6AAF1Cdf1jylYZBp+n7WPtfh6tsAG1WOk/MbJOZraASib867ThJZFNY1gAAAABJRU5ErkJggg==" InformativeScreenshot="97db64518f391d33c16e07cdcd1abdad.jpg" Selector="&lt;html app='chrome.exe' title='Converta PDF para Word. Converter PDF para DOCX' /&gt;" Title="Converta PDF para Word. Converter PDF para DOCX" Url="https://www.ilovepdf.com/pt/pdf_para_word" />
+        <uix:TargetApp Area="78, 78, 993, 519" FilePath="Recursos\conversorpdf2docx.exe" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAQ9SURBVFhH7ZfbU1tVFMYzffDF6av/gDP+Fb5jbbWWcmmh15RWqTN0KgUBgZJA7gGaBqiU0BAuIRACxWq1WF9rIfWhT/pU3/AFyO3k5Aqfa52TyymelItOfNA9880+7L3Z32+tvc7JOZr/27/eLHZHp67PjHKqz2jTkfVbpCMak8W289urdbz89XfSq39Un7U7VHuGIPN3JAizdUD8eTWIv6PVtRdYC/6CtReyVun6OY2x1NbnAN4lva2hdIixeALpVBKpZOIQkv8vqaLda9lDTGXyAO+RjhKAVeTBcuovAJlsVppYWXmGpz+93JdWfnyGbCYtKRgMqiof+fvXJyTxtSpANgfAG1d1LaC624+annnU6udwxuDDWZMP9TYv6vtncN4xhQvOSWntH+vrSCXiBaNSOhDAZfMytNaH0NqW0DCwiKuOAK45F/DpyDwaR+dw3eXD5+5ZBYCgGj1rXwD8x7YCoMn5HZqGv8WNe49w8z7JtYxm90Pc8iyhZXoRrd4A2ub8BYA0AfDGyaQo9wm5V4rNK3qHpWtVAEGUJ3jTtvEn6HD/gA7P9+icfowvyPyG24/GcS+ujLmhdY2jYcJVBBDjqtGz8gBsfuqerTRAVBALAHrvU9yeeYKGIR9OmsfwgXEIH1rv4kS/Ax/dGcRJZz9OjdgUALkMUOTS7cf9riywef1Mz/4Amh98gxOGUVT0DeOY2YnjNjIfuIOP7w7gk2G7tNnp+xYFQEw1elYegM0bHzeVBogpACr0I3LUFjIvRE3mI3ZUfm3F6TEzqh8YiwBUA0l6GCXoKPKGu8XmbwaIFwGOmXIp56gdZD5EKaeoK0ctqHKZUOM24IyntwCQoiNQi551AAB5gjc9bqeoBxUp56gp5dXjJtRO9OHspB51lNICQFw40GN8TwBloVWOWlFFKa+hlNd6yHxKR+d5G+d9XUUAOgK16FmHAlAWWnU+5ZO9qJvuwTlvNy7MdeKSv/01gFTuDlAz3K09AZSFJqV8Si9HPduFi/Nf4dJCO7SLrQWABNUAF6DaA4jHRJqLRqMIh8OIhEN7AygLrW5aR1Fzyjtx0d+By4E2XFlqRcPyrQJA8g23YTJB+xJgJBJGKBRCOLRVAkDxJFQW2rlZTjlFTSnXBr4k8xZcXW7GtUc3FQBR1ejzGYhTkXLkm5ub2NraVAeIi/KLwuTUorTxfjThCchHQAZq0bPigoBYNELGWzIASRUgEpMzwL/tvOlBFI8VM8A914MgxBClcT53jnpjY0NSSYBQNAH+ScZ2CumkACANZGksFUeGhO0kje2Qtkm0jueRwk5GLjI2ls1FCJSRGJlHKfIwnT2ff16cjZIAPFEuvQbA7+jdOkOCBw+jXqMVRosdFvsgTNZBGEw26FXWKdXc0j5E5vJbMTX+QOB3dB5gqnKIveTvAmpHchdMc7RMYi/5y+g/3jSaPwH2G61IeD/6MgAAAABJRU5ErkJggg==" InformativeScreenshot="57ace8411715e0b759db7c9007b92a8e.png" Selector="&lt;wnd app='conversorpdf2docx.exe' cls='ConsoleWindowClass' title='Recursos\Conversor PDF para Word\conversorpdf2docx.exe' /&gt;" Title="C:\Users\Magno\Documents\UiPath\Tradutor de PDF\Recursos\Convers*" />
       </uix:NApplicationCard.TargetApp>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </uix:NApplicationCard>
   </Sequence>
 </Activity>

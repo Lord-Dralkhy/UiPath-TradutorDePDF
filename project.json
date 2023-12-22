@@ -4,7 +4,6 @@
   "description": "Robô criado para traduzir um PDF escolhodo pelo usuário",
   "main": "Main.xaml",
   "dependencies": {
-    "UiPath.PDF.Activities": "[3.16.0]",
     "UiPath.System.Activities": "[23.10.3]",
     "UiPath.UIAutomation.Activities": "[23.10.8]"
   },
