@@ -76,6 +76,7 @@
     <Flowchart.Variables>
       <Variable x:TypeArguments="x:String" Name="PDFSelecionado" />
       <Variable x:TypeArguments="x:String" Name="PDFTipo" />
+      <Variable x:TypeArguments="x:String" Name="PDFIdiomaDestino" />
     </Flowchart.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -98,8 +99,15 @@
       </sap:WorkflowViewStateService.ViewState>
       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Obter PDF" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Modulos\obterPDF.xaml">
         <ui:InvokeWorkflowFile.Arguments>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_PDFSelecionado">[PDFSelecionado]</OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_PDFTipo">[PDFTipo]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_PDFSelecionado">
+            <VisualBasicReference x:TypeArguments="x:String" ExpressionText="PDFSelecionado" />
+          </OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_PDFTipo">
+            <VisualBasicReference x:TypeArguments="x:String" ExpressionText="PDFTipo" />
+          </OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_PDFIdiomaDestino">
+            <VisualBasicReference x:TypeArguments="x:String" ExpressionText="PDFIdiomaDestino" />
+          </OutArgument>
         </ui:InvokeWorkflowFile.Arguments>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -146,10 +154,13 @@
                       <av:Size x:Key="ShapeSize">200,52</av:Size>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Tradutor DOCX Nativo" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Modulos\tradutorDOCXNativo.xaml">
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Tradutor DOCX Nativo" sap:VirtualizedContainerService.HintSize="334,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Modulos\tradutorDOCXNativo.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
                       <InArgument x:TypeArguments="x:String" x:Key="in_DOCXSelecionado">
                         <VisualBasicValue x:TypeArguments="x:String" ExpressionText="PDFSelecionado" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_idiomaDestino">
+                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="PDFIdiomaDestino" />
                       </InArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                     <sap:WorkflowViewStateService.ViewState>

@@ -1,11 +1,13 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="tradutorDOCXNativo" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="tradutorDOCXNativo" this:tradutorDOCXNativo.in_idiomaDestino="portuguese" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_DOCXSelecionado" Type="InArgument(x:String)" />
+    <x:Property Name="in_idiomaDestino" Type="InArgument(x:String)" />
+    <x:Property Name="argument1" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1498,827</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1498,5189</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>tradutorDOCXNativo_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -47,6 +49,12 @@
       <x:String>UiPath.Word</x:String>
       <x:String>UiPath.Shared.Activities.Business</x:String>
       <x:String>UiPath.Word.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Triggers</x:String>
+      <x:String>UiPath.Platform.Triggers</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Triggers</x:String>
+      <x:String>UiPath.Platform.Triggers.Scope</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -108,9 +116,12 @@
       <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.Word</AssemblyReference>
       <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Traduzir um arquivo .docx usando seletores" DisplayName="tradutorDOCXNativo" sap:VirtualizedContainerService.HintSize="541,442" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Traduzir um arquivo .docx usando seletores" DisplayName="tradutorDOCXNativo" sap:VirtualizedContainerService.HintSize="989,5124" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="DOCXSelecionado_arquivo" />
       <Variable x:TypeArguments="x:String" Name="DOCXSelecionado_diretorio" />
@@ -121,7 +132,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign sap:VirtualizedContainerService.HintSize="479,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign sap:VirtualizedContainerService.HintSize="927,82" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[in_DOCXSelecionado]</OutArgument>
       </Assign.To>
@@ -129,7 +140,7 @@
         <InArgument x:TypeArguments="x:String">C:\Users\Magno\Documents\UiPath\Tradutor de PDF\PDFs Exemplo\UiPath Certified Professional - Automation Developer Associate Exam Description.pdf</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:MultipleAssign DisplayName="Obter o arquivo e o diretório" sap:VirtualizedContainerService.HintSize="479,178" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+    <ui:MultipleAssign DisplayName="Obter o arquivo e o diretório" sap:VirtualizedContainerService.HintSize="927,178" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -159,5 +170,448 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Abrir o extrator de parágrafos" sap:VirtualizedContainerService.HintSize="927,4642" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" ScopeGuid="f6cf6dcd-0374-4ce2-b445-8dcc00583ba9" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Fazer - Abrir o extrator de parágrafos" sap:VirtualizedContainerService.HintSize="893,4351" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Abrir o tradutor" sap:VirtualizedContainerService.HintSize="831,4236" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" ScopeGuid="168fd5b8-aefd-4070-83ea-0e39b1350bd4" Version="V2">
+              <uix:NApplicationCard.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Fazer - Abrir o tradutor" sap:VirtualizedContainerService.HintSize="797,3945" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Int32" Name="indiceAtual">
+                        <Variable.Default>
+                          <Literal x:TypeArguments="x:Int32" />
+                        </Variable.Default>
+                      </Variable>
+                      <Variable x:TypeArguments="x:String" Name="paragrafosTotal" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Sequence DisplayName="Configurar recursos" sap:VirtualizedContainerService.HintSize="735,81" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ContinueOnError="True" DelayBefore="1" DisplayName="Inserir diretório nos extrator de parágrafos" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="484,218" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="f6cf6dcd-0374-4ce2-b445-8dcc00583ba9" Text="[DOCXSelecionado_diretorio + DOCXSelecionado_arquivo + &quot;.docx&quot;]" Version="V3">
+                        <uix:NTypeInto.Target>
+                          <uix:TargetAnchorable CvElementArea="17, 57, 288, 21" CvType="InputBox" DesignTimeRectangle="18, 57, 286, 19" DesignTimeScaleFactor="1" FriendlyName="'TkChild'" FullSelectorArgument="&lt;wnd cls='TkChild' idx='4' /&gt;" FuzzySelectorArgument="&lt;wnd cls='TkChild' /&gt;" Guid="2988d57a-fcb6-4e2f-8ac4-9f80a4a0cd8f" InformativeScreenshot="d4aaa4db11baabd4e1e1e190c611e209.png" ScopeSelectorArgument="&lt;wnd app='obtertextoemdocx.exe' cls='TkTopLevel' title='Escolher DOCX' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                        </uix:NTypeInto.Target>
+                      </uix:NTypeInto>
+                      <uix:NClick ActivateBefore="True" ClickType="Single" ContinueOnError="True" DelayBefore="1" DisplayName="Click 'Ok'" sap:VirtualizedContainerService.HintSize="484,157" sap2010:WorkflowViewState.IdRef="NClick_5" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="f6cf6dcd-0374-4ce2-b445-8dcc00583ba9" Version="V3">
+                        <uix:NClick.Target>
+                          <uix:TargetAnchorable CvElementArea="75, 85, 82, 27" CvTextArea="107, 92, 18, 12" CvTextArgument="OK" CvType="Button" DesignTimeRectangle="75, 85, 82, 27" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'unchecked'" FullSelectorArgument="&lt;wnd cls='Button' idx='2' /&gt;" FuzzySelectorArgument="&lt;wnd cls='Button' check:text='Ok' /&gt;" Guid="0f3762a9-6e9a-45e4-9bb6-595aa4b2b1bb" ImageBase64="" InformativeScreenshot="d21d3c2fc14314190d1f146700cb1cd5.png" ScopeSelectorArgument="&lt;wnd app='obtertextoemdocx.exe' cls='TkTopLevel' title='Escolher DOCX' /&gt;" SearchSteps="CV" Version="V2" Visibility="Interactive">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                <uix:Target CvElementArea="166, 86, 81, 27" CvTextArea="187, 92, 37, 12" CvTextArgument="Cancel" CvType="Button" DesignTimeRectangle="166, 86, 80, 26" ElementType="Button" FriendlyName="'unchecked'" FullSelectorArgument="&lt;wnd cls='Button' /&gt;" FuzzySelectorArgument="&lt;wnd cls='Button' check:text='unchecked' /&gt;" SearchSteps="Selector, FuzzySelector, CV" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NClick.Target>
+                      </uix:NClick>
+                      <uix:NGetText ContinueOnError="True" DelayBefore="1" DisplayName="Obter total de paragrafos" sap:VirtualizedContainerService.HintSize="484,157" sap2010:WorkflowViewState.IdRef="NGetText_3" ScopeIdentifier="f6cf6dcd-0374-4ce2-b445-8dcc00583ba9" TextString="[paragrafosTotal]" Version="V3">
+                        <uix:NGetText.Target>
+                          <uix:TargetAnchorable CvTextArea="64, 60, 20, 11" CvType="AnyWordGroup" DesignTimeRectangle="65, 59, 54, 15" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'118'" FullSelectorArgument="&lt;wnd ctrlid='65535' title='118' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='65535' /&gt;" Guid="40fecb08-fa01-4701-99ab-7b97e5f7b6c4" InformativeScreenshot="63d98bb7c06db77bc99e337b4097592d.png" ScopeSelectorArgument="&lt;wnd app='obtertextoemdocx.exe' cls='#32770' title='Total de parágrafos' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                <uix:Target CvTextArea="25, 6, 90, 15" CvTextArgument="Total de paragr..." CvType="Text" DesignTimeRectangle="25, 6, 90, 15" ElementType="Text" FriendlyName="'Total de paragr...'" SearchSteps="CV" TargetType="ComputerVisionBased" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NGetText.Target>
+                      </uix:NGetText>
+                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" ContinueOnError="True" DisplayName="Encontrar notificação dos parágrafor" sap:VirtualizedContainerService.HintSize="484,365" sap2010:WorkflowViewState.IdRef="WindowScope_6" InformativeScreenshot="3845d7ece227a17dd21dbb5bd38d2b69" Selector="&lt;wnd app='obtertextoemdocx.exe' cls='#32770' title='Total de parágrafos' /&gt;">
+                        <ui:WindowScope.Body>
+                          <ActivityAction x:TypeArguments="x:Object">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Fazer - Encontrar notificação dos parágrafor" sap:VirtualizedContainerService.HintSize="450,218" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:Click DelayMS="{x:Null}" SimulateClick="{x:Null}" AlterIfDisabled="True" ClickType="CLICK_SINGLE" ContinueOnError="True" DelayBefore="1" DisplayName="Click 'Ok'" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="True">
+                                <ui:Click.CursorPosition>
+                                  <ui:CursorPosition Position="Center">
+                                    <ui:CursorPosition.OffsetX>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:CursorPosition.OffsetX>
+                                    <ui:CursorPosition.OffsetY>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:CursorPosition.OffsetY>
+                                  </ui:CursorPosition>
+                                </ui:Click.CursorPosition>
+                                <ui:Click.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1be14ee7-a298-4d3b-83c7-07e056977f58" InformativeScreenshot="8948ba5bf9d286d896b23349bc64de3d" Selector="&lt;wnd ctrlid='2' title='OK' /&gt;">
+                                    <ui:Target.TimeoutMS>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:Target.TimeoutMS>
+                                    <ui:Target.WaitForReady>
+                                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                                    </ui:Target.WaitForReady>
+                                  </ui:Target>
+                                </ui:Click.Target>
+                              </ui:Click>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:WindowScope.Body>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:WindowScope>
+                      <uix:NTypeInto ActivateBefore="True" AlterIfDisabled="True" ClickBeforeMode="Single" ContinueOnError="True" DelayBefore="1" DisplayName="Inserir idioma no tradutor" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="484,218" sap2010:WorkflowViewState.IdRef="NTypeInto_2" ScopeIdentifier="168fd5b8-aefd-4070-83ea-0e39b1350bd4" Text="[in_idiomaDestino]" Version="V3">
+                        <uix:NTypeInto.Target>
+                          <uix:TargetAnchorable CvElementArea="16, 57, 518, 21" CvType="InputBox" DesignTimeRectangle="18, 57, 514, 19" DesignTimeScaleFactor="1" FriendlyName="'TkChild'" FullSelectorArgument="&lt;wnd cls='TkChild' idx='4' /&gt;" FuzzySelectorArgument="&lt;wnd cls='TkChild' /&gt;" Guid="af9b29b7-2c8c-4697-a2f4-670478661dee" InformativeScreenshot="ce197c514ad3463e2c3e8b14d2a17c0f.png" ScopeSelectorArgument="&lt;wnd app='tradutorsimples.exe' cls='TkTopLevel' title='Selecione um idioma' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                        </uix:NTypeInto.Target>
+                      </uix:NTypeInto>
+                      <uix:NClick ActivateBefore="True" AlterIfDisabled="True" ClickType="Single" ContinueOnError="True" DelayBefore="1" DisplayName="Click 'Ok'" sap:VirtualizedContainerService.HintSize="484,157" sap2010:WorkflowViewState.IdRef="NClick_6" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="168fd5b8-aefd-4070-83ea-0e39b1350bd4" Version="V3">
+                        <uix:NClick.Target>
+                          <uix:TargetAnchorable CvElementArea="189, 85, 81, 27" CvTextArea="221, 92, 18, 12" CvTextArgument="OK" CvType="Button" DesignTimeRectangle="190, 86, 80, 26" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'unchecked'" FullSelectorArgument="&lt;wnd cls='Button' idx='2' /&gt;" FuzzySelectorArgument="&lt;wnd cls='Button' check:text='unchecked' /&gt;" Guid="546fd86f-8337-4955-b12b-47a76cd5a650" InformativeScreenshot="520cc40e1779f56423047a23299e9b45.png" ScopeSelectorArgument="&lt;wnd app='tradutorsimples.exe' cls='TkTopLevel' title='Selecione um idioma' /&gt;" SearchSteps="Selector, CV" Version="V2" Visibility="Interactive" />
+                        </uix:NClick.Target>
+                      </uix:NClick>
+                    </Sequence>
+                    <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" DisplayName="Do While - Fazer a tradução" sap:VirtualizedContainerService.HintSize="735,3709" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+                      <ui:InterruptibleDoWhile.Body>
+                        <Sequence DisplayName="Corpo" sap:VirtualizedContainerService.HintSize="701,3573" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:String" Name="textoAlvo" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Sequence DisplayName="Usar programa para obter texto" sap:VirtualizedContainerService.HintSize="659,1175" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" ContinueOnError="True" DisplayName="Encontrar janela do indice" sap:VirtualizedContainerService.HintSize="484,512" sap2010:WorkflowViewState.IdRef="WindowScope_3" InformativeScreenshot="4b1514aa2f4a981e1bef5f706be02ed8" Selector="&lt;wnd app='obtertextoemdocx.exe' cls='#32770' title='Index' /&gt;">
+                              <ui:WindowScope.Body>
+                                <ActivityAction x:TypeArguments="x:Object">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                  </ActivityAction.Argument>
+                                  <Sequence DisplayName="Fazer" sap:VirtualizedContainerService.HintSize="450,365" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:GetValue ContinueOnError="True" DisplayName="Obter indice" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="GetValue_1">
+                                      <ui:GetValue.Target>
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a96cc900-1c95-46f4-a3f8-ce74490fc60c" InformativeScreenshot="555a2b5eef833930ca2af1e4e516f0c6" Selector="&lt;wnd ctrlid='65535' title='*' /&gt;">
+                                          <ui:Target.TimeoutMS>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:Target.TimeoutMS>
+                                          <ui:Target.WaitForReady>
+                                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                                          </ui:Target.WaitForReady>
+                                        </ui:Target>
+                                      </ui:GetValue.Target>
+                                      <ui:GetValue.Value>
+                                        <OutArgument x:TypeArguments="x:Int32">[indiceAtual]</OutArgument>
+                                      </ui:GetValue.Value>
+                                    </ui:GetValue>
+                                    <ui:Click AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" CursorMotionType="Instant" DelayBefore="1" DisplayName="Click 'Ok'" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                      <ui:Click.CursorPosition>
+                                        <ui:CursorPosition Position="Center">
+                                          <ui:CursorPosition.OffsetX>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:CursorPosition.OffsetX>
+                                          <ui:CursorPosition.OffsetY>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:CursorPosition.OffsetY>
+                                        </ui:CursorPosition>
+                                      </ui:Click.CursorPosition>
+                                      <ui:Click.Target>
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8941f4cd-39eb-4be3-b8cd-c9089410fdfc" InformativeScreenshot="57049c858c37083834308cc5c569579e" Selector="&lt;wnd ctrlid='2' title='OK' /&gt;">
+                                          <ui:Target.TimeoutMS>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:Target.TimeoutMS>
+                                          <ui:Target.WaitForReady>
+                                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                                          </ui:Target.WaitForReady>
+                                        </ui:Target>
+                                      </ui:Click.Target>
+                                    </ui:Click>
+                                  </Sequence>
+                                </ActivityAction>
+                              </ui:WindowScope.Body>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:WindowScope>
+                            <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Encontrar janela do texto" sap:VirtualizedContainerService.HintSize="484,512" sap2010:WorkflowViewState.IdRef="WindowScope_4" InformativeScreenshot="9e7a1fd1944823895f71317a16c6dee8" Selector="&lt;wnd app='obtertextoemdocx.exe' cls='#32770' title='Texto*' /&gt;">
+                              <ui:WindowScope.Body>
+                                <ActivityAction x:TypeArguments="x:Object">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                  </ActivityAction.Argument>
+                                  <Sequence DisplayName="Fazer" sap:VirtualizedContainerService.HintSize="450,365" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Obter texto" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="GetValue_2">
+                                      <ui:GetValue.Target>
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ce2b4ef6-ebf2-401c-a33f-7f00cec1c644" InformativeScreenshot="d21c1b505feaed96429b21b03e3f99f2" Selector="&lt;wnd ctrlid='65535' /&gt;">
+                                          <ui:Target.TimeoutMS>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:Target.TimeoutMS>
+                                          <ui:Target.WaitForReady>
+                                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                                          </ui:Target.WaitForReady>
+                                        </ui:Target>
+                                      </ui:GetValue.Target>
+                                      <ui:GetValue.Value>
+                                        <OutArgument x:TypeArguments="x:String">[textoAlvo]</OutArgument>
+                                      </ui:GetValue.Value>
+                                    </ui:GetValue>
+                                    <ui:Click AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="1" DisplayName="Click 'Ok'" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                                      <ui:Click.CursorPosition>
+                                        <ui:CursorPosition Position="Center">
+                                          <ui:CursorPosition.OffsetX>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:CursorPosition.OffsetX>
+                                          <ui:CursorPosition.OffsetY>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:CursorPosition.OffsetY>
+                                        </ui:CursorPosition>
+                                      </ui:Click.CursorPosition>
+                                      <ui:Click.Target>
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b2e18087-f7ef-4626-a568-7a18a81d5e54" InformativeScreenshot="c85f7cf9ee00346b03e53d325d121381" Selector="&lt;wnd ctrlid='2' title='OK' /&gt;">
+                                          <ui:Target.TimeoutMS>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:Target.TimeoutMS>
+                                          <ui:Target.WaitForReady>
+                                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                                          </ui:Target.WaitForReady>
+                                        </ui:Target>
+                                      </ui:Click.Target>
+                                    </ui:Click>
+                                  </Sequence>
+                                </ActivityAction>
+                              </ui:WindowScope.Body>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:WindowScope>
+                          </Sequence>
+                          <ui:IfElseIf DisplayName="Verificar se existe texto" sap:VirtualizedContainerService.HintSize="659,2270" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
+                            <ui:IfElseIf.ConditionBlocks>
+                              <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                <ui:IfElseIfBlock BlockType="If" Condition="[textoAlvo.Trim &lt;&gt; &quot;&quot;]">
+                                  <ui:IfElseIfBlock.Then>
+                                    <Sequence DisplayName="Corpo" sap:VirtualizedContainerService.HintSize="608,2074" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <Sequence DisplayName="Usar programa de traduçao" sap:VirtualizedContainerService.HintSize="546,81" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ContinueOnError="True" DelayBefore="1" DisplayName="Digitar texto" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="484,218" sap2010:WorkflowViewState.IdRef="NTypeInto_9" ScopeIdentifier="168fd5b8-aefd-4070-83ea-0e39b1350bd4" Text="[textoAlvo]" Version="V3">
+                                          <uix:NTypeInto.Target>
+                                            <uix:TargetAnchorable CvElementArea="18, 56, 160, 22" CvType="InputBox" DesignTimeRectangle="18, 57, 160, 19" DesignTimeScaleFactor="1" FriendlyName="'TkChild'" FullSelectorArgument="&lt;wnd cls='TkChild' idx='4' /&gt;" FuzzySelectorArgument="&lt;wnd cls='TkChild' /&gt;" Guid="611ba804-9a4b-4339-b411-8057e11a469c" InformativeScreenshot="3f0ff99d88128017c49049430877354d.png" ScopeSelectorArgument="&lt;wnd app='tradutorsimples.exe' cls='TkTopLevel' title='Texto a ser traduzido' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                                          </uix:NTypeInto.Target>
+                                        </uix:NTypeInto>
+                                        <uix:NClick ActivateBefore="True" ClickType="Single" ContinueOnError="True" DelayBefore="1" DisplayName="Click 'Ok'" sap:VirtualizedContainerService.HintSize="484,157" sap2010:WorkflowViewState.IdRef="NClick_9" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="168fd5b8-aefd-4070-83ea-0e39b1350bd4" Version="V3">
+                                          <uix:NClick.Target>
+                                            <uix:TargetAnchorable CvElementArea="12, 85, 82, 28" CvTextArea="44, 92, 18, 12" CvTextArgument="OK" CvType="Button" DesignTimeRectangle="13, 86, 80, 26" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'unchecked'" FullSelectorArgument="&lt;wnd cls='Button' idx='2' /&gt;" FuzzySelectorArgument="&lt;wnd cls='Button' check:text='unchecked' /&gt;" Guid="f75131db-a8e8-4e8d-909e-26f9e6be1d0d" InformativeScreenshot="510b285c74af0c06c0ef1f7e99e02248.png" ScopeSelectorArgument="&lt;wnd app='tradutorsimples.exe' cls='TkTopLevel' title='Texto a ser traduzido' /&gt;" SearchSteps="Selector, CV" Version="V2" Visibility="Interactive" />
+                                          </uix:NClick.Target>
+                                        </uix:NClick>
+                                        <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Encontrar notificação com a tradução" sap:VirtualizedContainerService.HintSize="484,512" sap2010:WorkflowViewState.IdRef="WindowScope_7" InformativeScreenshot="e6e0e81841d3b5f92f8057730731a310" Selector="&lt;wnd app='tradutorsimples.exe' cls='#32770' title='Texto traduzido' /&gt;">
+                                          <ui:WindowScope.Body>
+                                            <ActivityAction x:TypeArguments="x:Object">
+                                              <ActivityAction.Argument>
+                                                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                              </ActivityAction.Argument>
+                                              <Sequence DisplayName="Fazer" sap:VirtualizedContainerService.HintSize="450,365" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <ui:GetValue ContinueOnError="True" DisplayName="Obter texto" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="GetValue_4">
+                                                  <ui:GetValue.Target>
+                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="7afacc7e-6424-4a6c-81e1-1ab6004aace7" InformativeScreenshot="acbd28f35aaa1668a6906cace92e3ef3" Selector="&lt;wnd ctrlid='65535' title='*' /&gt;">
+                                                      <ui:Target.TimeoutMS>
+                                                        <InArgument x:TypeArguments="x:Int32" />
+                                                      </ui:Target.TimeoutMS>
+                                                      <ui:Target.WaitForReady>
+                                                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                                                      </ui:Target.WaitForReady>
+                                                    </ui:Target>
+                                                  </ui:GetValue.Target>
+                                                  <ui:GetValue.Value>
+                                                    <OutArgument x:TypeArguments="x:String">[textoAlvo]</OutArgument>
+                                                  </ui:GetValue.Value>
+                                                </ui:GetValue>
+                                                <ui:Click DelayMS="{x:Null}" SimulateClick="{x:Null}" AlterIfDisabled="True" ClickType="CLICK_SINGLE" ContinueOnError="True" DelayBefore="1" DisplayName="Click 'Ok'" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="Click_7" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="True">
+                                                  <ui:Click.CursorPosition>
+                                                    <ui:CursorPosition Position="Center">
+                                                      <ui:CursorPosition.OffsetX>
+                                                        <InArgument x:TypeArguments="x:Int32" />
+                                                      </ui:CursorPosition.OffsetX>
+                                                      <ui:CursorPosition.OffsetY>
+                                                        <InArgument x:TypeArguments="x:Int32" />
+                                                      </ui:CursorPosition.OffsetY>
+                                                    </ui:CursorPosition>
+                                                  </ui:Click.CursorPosition>
+                                                  <ui:Click.Target>
+                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="eb6e7506-23b7-476d-ad44-6b709f17c018" InformativeScreenshot="6c6466b36154c884e29aa7d51401df8e" Selector="&lt;wnd ctrlid='2' title='OK' /&gt;">
+                                                      <ui:Target.TimeoutMS>
+                                                        <InArgument x:TypeArguments="x:Int32" />
+                                                      </ui:Target.TimeoutMS>
+                                                      <ui:Target.WaitForReady>
+                                                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                                                      </ui:Target.WaitForReady>
+                                                    </ui:Target>
+                                                  </ui:Click.Target>
+                                                </ui:Click>
+                                              </Sequence>
+                                            </ActivityAction>
+                                          </ui:WindowScope.Body>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ui:WindowScope>
+                                      </Sequence>
+                                      <Sequence DisplayName="Usar programa de inserção de texto" sap:VirtualizedContainerService.HintSize="546,1842" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Abrir o inseridor de parágrafos" sap:VirtualizedContainerService.HintSize="484,1731" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" ScopeGuid="5fd50406-4b14-46e7-9a00-9115f8c85186" Version="V2">
+                                          <uix:NApplicationCard.Body>
+                                            <ActivityAction x:TypeArguments="x:Object">
+                                              <ActivityAction.Argument>
+                                                <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                                              </ActivityAction.Argument>
+                                              <Sequence DisplayName="Fazer - Abrir o inseridor de parágrafos" sap:VirtualizedContainerService.HintSize="450,1440" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ContinueOnError="True" DelayBefore="1" DisplayName="Inserir diretório no inseridor de texto" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="388,218" sap2010:WorkflowViewState.IdRef="NTypeInto_8" ScopeIdentifier="5fd50406-4b14-46e7-9a00-9115f8c85186" Text="[DOCXSelecionado_diretorio + DOCXSelecionado_arquivo + &quot;.docx&quot;]" Version="V3">
+                                                  <uix:NTypeInto.Target>
+                                                    <uix:TargetAnchorable CvElementArea="17, 57, 288, 21" CvType="InputBox" DesignTimeRectangle="18, 57, 286, 19" DesignTimeScaleFactor="1" FriendlyName="'TkChild'" FullSelectorArgument="&lt;wnd cls='TkChild' idx='4' /&gt;" FuzzySelectorArgument="&lt;wnd cls='TkChild' /&gt;" Guid="f1bff4de-8c7c-4405-8f5a-5c1b6280ac11" InformativeScreenshot="37de2e43348a6c074a8b8dd0f24e882e.png" ScopeSelectorArgument="&lt;wnd app='inserirtextoemdocx.exe' cls='TkTopLevel' title='Escolher DOCX' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                                                  </uix:NTypeInto.Target>
+                                                </uix:NTypeInto>
+                                                <uix:NClick ActivateBefore="True" ClickType="Single" ContinueOnError="True" DelayBefore="1" DisplayName="Click 'Ok'" sap:VirtualizedContainerService.HintSize="388,157" sap2010:WorkflowViewState.IdRef="NClick_8" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5fd50406-4b14-46e7-9a00-9115f8c85186" Version="V3">
+                                                  <uix:NClick.Target>
+                                                    <uix:TargetAnchorable CvElementArea="75, 85, 82, 27" CvTextArea="107, 92, 18, 12" CvTextArgument="OK" CvType="Button" DesignTimeRectangle="76, 86, 80, 26" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'unchecked'" FullSelectorArgument="&lt;wnd cls='Button' idx='2' /&gt;" FuzzySelectorArgument="&lt;wnd cls='Button' check:text='unchecked' /&gt;" Guid="c27dd987-8258-4140-a186-0e24e368fe44" InformativeScreenshot="8bcddedffac656403644981483a9952c.png" ScopeSelectorArgument="&lt;wnd app='inserirtextoemdocx.exe' cls='TkTopLevel' title='Escolher DOCX' /&gt;" SearchSteps="Selector, CV" Version="V2" Visibility="Interactive" />
+                                                  </uix:NClick.Target>
+                                                </uix:NClick>
+                                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ContinueOnError="True" DelayBefore="1" DisplayName="Digitar indice" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="388,218" sap2010:WorkflowViewState.IdRef="NTypeInto_10" ScopeIdentifier="5fd50406-4b14-46e7-9a00-9115f8c85186" Text="[indiceAtual.ToString]" Version="V3">
+                                                  <uix:NTypeInto.Target>
+                                                    <uix:TargetAnchorable CvElementArea="19, 56, 157, 22" CvType="InputBox" DesignTimeRectangle="20, 57, 156, 19" DesignTimeScaleFactor="1" FriendlyName="'TkChild'" FullSelectorArgument="&lt;wnd cls='TkChild' idx='4' /&gt;" FuzzySelectorArgument="&lt;wnd cls='TkChild' /&gt;" Guid="411ee075-44fe-49ce-9d1a-41fb4a49bb97" InformativeScreenshot="5bdc53874120053134898ede49074969.png" ScopeSelectorArgument="&lt;wnd app='inserirtextoemdocx.exe' cls='TkTopLevel' title='Inserir parágrafo' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                                                  </uix:NTypeInto.Target>
+                                                </uix:NTypeInto>
+                                                <uix:NClick ActivateBefore="True" ClickType="Single" ContinueOnError="True" DelayBefore="1" DisplayName="Click 'Ok'" sap:VirtualizedContainerService.HintSize="388,157" sap2010:WorkflowViewState.IdRef="NClick_10" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5fd50406-4b14-46e7-9a00-9115f8c85186" Version="V3">
+                                                  <uix:NClick.Target>
+                                                    <uix:TargetAnchorable CvElementArea="12, 85, 82, 28" CvTextArea="44, 92, 18, 12" CvTextArgument="OK" CvType="Button" DesignTimeRectangle="13, 86, 80, 26" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'unchecked'" FullSelectorArgument="&lt;wnd cls='Button' idx='2' /&gt;" FuzzySelectorArgument="&lt;wnd cls='Button' check:text='unchecked' /&gt;" Guid="8564b53d-d8b6-4f12-91cc-3e932e8b058b" InformativeScreenshot="bf7d2b55cfa441e7465900d58fae267d.png" ScopeSelectorArgument="&lt;wnd app='inserirtextoemdocx.exe' cls='TkTopLevel' title='Inserir parágrafo' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                                                  </uix:NClick.Target>
+                                                </uix:NClick>
+                                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ContinueOnError="True" DelayBefore="1" DisplayName="Inserir texto no DOCX" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="388,218" sap2010:WorkflowViewState.IdRef="NTypeInto_11" ScopeIdentifier="5fd50406-4b14-46e7-9a00-9115f8c85186" Text="[textoAlvo]" Version="V3">
+                                                  <uix:NTypeInto.Target>
+                                                    <uix:TargetAnchorable CvElementArea="18, 57, 212, 21" CvType="InputBox" DesignTimeRectangle="18, 57, 212, 19" DesignTimeScaleFactor="1" FriendlyName="'TkChild'" FullSelectorArgument="&lt;wnd cls='TkChild' idx='4' /&gt;" FuzzySelectorArgument="&lt;wnd cls='TkChild' /&gt;" Guid="5bb60be9-c6e3-4d8d-82f7-b74c2b8ffb94" InformativeScreenshot="753d06e0401e2d93d0b8f33db6b34d69.png" ScopeSelectorArgument="&lt;wnd app='inserirtextoemdocx.exe' cls='TkTopLevel' title='Inserir texto' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                                                  </uix:NTypeInto.Target>
+                                                </uix:NTypeInto>
+                                                <uix:NClick ActivateBefore="True" ClickType="Single" ContinueOnError="True" DelayBefore="1" DisplayName="Click 'Ok'" sap:VirtualizedContainerService.HintSize="388,157" sap2010:WorkflowViewState.IdRef="NClick_11" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5fd50406-4b14-46e7-9a00-9115f8c85186" Version="V3">
+                                                  <uix:NClick.Target>
+                                                    <uix:TargetAnchorable CvElementArea="38, 85, 81, 27" CvTextArea="70, 92, 18, 12" CvTextArgument="OK" CvType="Button" DesignTimeRectangle="39, 86, 80, 26" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'unchecked'" FullSelectorArgument="&lt;wnd cls='Button' idx='2' /&gt;" FuzzySelectorArgument="&lt;wnd cls='Button' check:text='unchecked' /&gt;" Guid="21ec5058-e8ab-45fb-8560-46df96507193" InformativeScreenshot="35138fa32dc16c926661e5d040e9f252.png" ScopeSelectorArgument="&lt;wnd app='inserirtextoemdocx.exe' cls='TkTopLevel' title='Inserir texto' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                                                  </uix:NClick.Target>
+                                                </uix:NClick>
+                                              </Sequence>
+                                            </ActivityAction>
+                                          </uix:NApplicationCard.Body>
+                                          <uix:NApplicationCard.TargetApp>
+                                            <uix:TargetApp Area="130, 130, 993, 519" FilePath="Recursos\inserirtextoemdocx.exe" IconBase64="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" InformativeScreenshot="230fc8064601495c265140853790bfd9.png" Selector="&lt;wnd app='inserirtextoemdocx.exe' cls='ConsoleWindowClass' title='C:\Users\Magno\Documents\UiPath\Tradutor de PDF\Recursos\inserir*' /&gt;" Title="C:\Users\Magno\Documents\UiPath\Tradutor de PDF\Recursos\inserir*" />
+                                          </uix:NApplicationCard.TargetApp>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </uix:NApplicationCard>
+                                      </Sequence>
+                                    </Sequence>
+                                  </ui:IfElseIfBlock.Then>
+                                </ui:IfElseIfBlock>
+                              </sc:BindingList>
+                            </ui:IfElseIf.ConditionBlocks>
+                          </ui:IfElseIf>
+                        </Sequence>
+                      </ui:InterruptibleDoWhile.Body>
+                      <ui:InterruptibleDoWhile.Condition>
+                        <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="indiceAtual &lt;= CInt(paragrafosTotal)" />
+                      </ui:InterruptibleDoWhile.Condition>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:InterruptibleDoWhile>
+                  </Sequence>
+                </ActivityAction>
+              </uix:NApplicationCard.Body>
+              <uix:NApplicationCard.TargetApp>
+                <uix:TargetApp Area="52, 52, 993, 519" FilePath="Recursos\tradutorsimples.exe" IconBase64="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" InformativeScreenshot="d939afb4ad25f919339f249834266d45.png" Selector="&lt;wnd app='tradutorsimples.exe' cls='ConsoleWindowClass' title='C:\Users\Magno\Documents\UiPath\Tradutor de PDF\Recursos\traduto*' /&gt;" Title="C:\Users\Magno\Documents\UiPath\Tradutor de PDF\Recursos\traduto*" />
+              </uix:NApplicationCard.TargetApp>
+            </uix:NApplicationCard>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="104, 104, 993, 519" FilePath="Recursos\obtertextoemdocx.exe" IconBase64="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" InformativeScreenshot="5b5cfb15aa6b58c9685fcab2d941e8b4.png" Selector="&lt;wnd app='obtertextoemdocx.exe' cls='ConsoleWindowClass' title='C:\Users\Magno\Documents\UiPath\Tradutor de PDF\Recursos\obterTe*' /&gt;" Title="C:\Users\Magno\Documents\UiPath\Tradutor de PDF\Recursos\obterTe*" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
   </Sequence>
 </Activity>

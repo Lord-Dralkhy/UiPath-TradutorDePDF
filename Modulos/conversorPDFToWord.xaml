@@ -5,7 +5,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1498,1507</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1498,1815</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>conversorPDFToWord_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -47,6 +47,16 @@
       <x:String>UiPath.Platform.ResourceHandling</x:String>
       <x:String>System.Management.Automation</x:String>
       <x:String>System.Dynamic</x:String>
+      <x:String>UiPath.CV</x:String>
+      <x:String>UiPath.Shared.ObjectLibrary</x:String>
+      <x:String>UiPath.CV.Activities</x:String>
+      <x:String>UiPath.CV.Activities.Interfaces</x:String>
+      <x:String>UiPath.UIAutomationNext.Triggers</x:String>
+      <x:String>UiPath.Platform.Triggers</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Triggers</x:String>
+      <x:String>UiPath.Platform.Triggers.Scope</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -103,28 +113,31 @@
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
       <AssemblyReference>System.Management.Automation</AssemblyReference>
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.CV.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Usa um aplicativo para converter o arquivo PDF em arquivo Word (.docx)" DisplayName="conversorPDFToWord" sap:VirtualizedContainerService.HintSize="1112,1442" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Usa um aplicativo para converter o arquivo PDF em arquivo Word (.docx)" DisplayName="conversorPDFToWord" sap:VirtualizedContainerService.HintSize="1112,1750" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application: Recursos\Conversor PDF para Word\conversorpdf2docx.exe" sap:VirtualizedContainerService.HintSize="1050,1300" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" ScopeGuid="8ed51fb0-7a2b-4580-9129-0b1ecbb112d5" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Converter o PDF" sap:VirtualizedContainerService.HintSize="1050,1608" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" ScopeGuid="8ed51fb0-7a2b-4580-9129-0b1ecbb112d5" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Fazer" sap:VirtualizedContainerService.HintSize="1016,1009" sap2010:WorkflowViewState.IdRef="Sequence_14">
+          <Sequence DisplayName="Fazer" sap:VirtualizedContainerService.HintSize="1016,1317" sap2010:WorkflowViewState.IdRef="Sequence_14">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NCheckState DisplayName="Verificar se os recursos estão disoníveis" sap:VirtualizedContainerService.HintSize="954,747" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="8ed51fb0-7a2b-4580-9129-0b1ecbb112d5" Timeout="15" Version="V3">
+            <uix:NCheckState DisplayName="Verificar se pode digitar o diretório" sap:VirtualizedContainerService.HintSize="954,747" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="8ed51fb0-7a2b-4580-9129-0b1ecbb112d5" Timeout="3000" Version="V3">
               <uix:NCheckState.IfExists>
                 <Sequence DisplayName="Destino aparece" sap:VirtualizedContainerService.HintSize="450,530" sap2010:WorkflowViewState.IdRef="Sequence_15">
                   <sap:WorkflowViewStateService.ViewState>
@@ -137,7 +150,7 @@
                       <uix:TargetAnchorable DesignTimeRectangle="18, 57, 368, 19" DesignTimeScaleFactor="1" FriendlyName="'TkChild'" FullSelectorArgument="&lt;wnd cls='TkChild' idx='4' /&gt;" FuzzySelectorArgument="&lt;wnd cls='TkChild' /&gt;" Guid="87adef20-0a47-4030-8560-66a7ac86d819" InformativeScreenshot="a3c77bc0822a348b9d0de299b172daea.png" ScopeSelectorArgument="&lt;wnd app='conversorpdf2docx.exe' cls='TkTopLevel' title='Escolher PDF' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive" />
                     </uix:NTypeInto.Target>
                   </uix:NTypeInto>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'OK'" sap:VirtualizedContainerService.HintSize="388,157" sap2010:WorkflowViewState.IdRef="NClick_9" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8ed51fb0-7a2b-4580-9129-0b1ecbb112d5" Version="V3">
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'OK' - Inserir diretório" sap:VirtualizedContainerService.HintSize="388,157" sap2010:WorkflowViewState.IdRef="NClick_9" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8ed51fb0-7a2b-4580-9129-0b1ecbb112d5" Version="V3">
                     <uix:NClick.Target>
                       <uix:TargetAnchorable DesignTimeRectangle="117, 86, 80, 26" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'unchecked'" FullSelectorArgument="&lt;wnd cls='Button' idx='2' /&gt;" FuzzySelectorArgument="&lt;wnd cls='Button' check:text='unchecked' /&gt;" Guid="2bc06801-ef00-4a1f-8e0f-017327cf37bb" InformativeScreenshot="678e78047a2093ff83c50bd249f2eaae.png" ScopeSelectorArgument="&lt;wnd app='conversorpdf2docx.exe' cls='TkTopLevel' title='Escolher PDF' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive" />
                     </uix:NClick.Target>
@@ -163,16 +176,34 @@
                   </uix:TargetAnchorable.FuzzySelectorArgument>
                 </uix:TargetAnchorable>
               </uix:NCheckState.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
             </uix:NCheckState>
-            <ui:WaitUiElementVanish WaitNotActive="{x:Null}" WaitNotVisible="{x:Null}" DisplayName="Esperar a conclusão da conversão" sap:VirtualizedContainerService.HintSize="954,107" sap2010:WorkflowViewState.IdRef="WaitUiElementVanish_1">
-              <ui:WaitUiElementVanish.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ffe568e4-5942-4569-b892-3b71e015c9ee" InformativeScreenshot="6cfa169e1c0dc7e1afefb7de5c19bd43" Selector="&lt;wnd app='conversorpdf2docx.exe' cls='ConsoleWindowClass' title='*Recursos\Convers*' /&gt;" TimeoutMS="999999999">
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
-                </ui:Target>
-              </ui:WaitUiElementVanish.Target>
-            </ui:WaitUiElementVanish>
+            <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" Window="{x:Null}" DisplayName="Esperar finalizar" sap:VirtualizedContainerService.HintSize="954,415" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="32071bb6fd3c359c46788509e046e0ce" Selector="&lt;wnd app='conversorpdf2docx.exe' cls='#32770' title='Concluído' /&gt;" TimeoutMS="999999999">
+              <ui:WindowScope.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Fazer" sap:VirtualizedContainerService.HintSize="450,268" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Fechar programa" sap:VirtualizedContainerService.HintSize="388,157" sap2010:WorkflowViewState.IdRef="NClick_14" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8ed51fb0-7a2b-4580-9129-0b1ecbb112d5" Version="V3">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable CvElementArea="953, 5, 18, 18" CvType="CloseButton" DesignTimeRectangle="952, 5, 19, 18" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'conversorpdf2docx.exe C…'" Guid="8b199add-b535-4c9c-b422-21af767f9671" ImageBase64="" InformativeScreenshot="eeecee1f4152e54d6ae59035fec12bb2.png" ScopeSelectorArgument="&lt;wnd app='conversorpdf2docx.exe' cls='ConsoleWindowClass' title='*' /&gt;" SearchSteps="CV" TargetType="ComputerVisionBased" Version="V2" Visibility="Interactive" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                  </Sequence>
+                </ActivityAction>
+              </ui:WindowScope.Body>
+            </ui:WindowScope>
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>
