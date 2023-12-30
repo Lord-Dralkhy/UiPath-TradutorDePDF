@@ -1,0 +1,200 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Conversor_WordToPDF" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_DOCXSelecionado" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1498,1824</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Conversor_WordToPDF_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>System.ComponentModel</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Conversor_WordToPDF" sap:VirtualizedContainerService.HintSize="1112,1759" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Usar o conversorDOCX2PDF.exe" sap:VirtualizedContainerService.HintSize="1050,1648" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="8ed51fb0-7a2b-4580-9129-0b1ecbb112d5" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Fazer" sap:VirtualizedContainerService.HintSize="1016,1357" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NCheckState DisplayName="Verificar se pode digitar o diretório" sap:VirtualizedContainerService.HintSize="954,787" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="8ed51fb0-7a2b-4580-9129-0b1ecbb112d5" Timeout="3000" Version="V3">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Destino aparece" sap:VirtualizedContainerService.HintSize="450,530" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Digitar diretório do arquivo" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="388,218" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="8ed51fb0-7a2b-4580-9129-0b1ecbb112d5" Text="[in_DOCXSelecionado]" Version="V3">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable CvElementArea="16, 57, 352, 21" CvType="InputBox" DesignTimeRectangle="18, 57, 351, 19" DesignTimeScaleFactor="1" FriendlyName="'TkChild'" FullSelectorArgument="&lt;wnd cls='TkChild' idx='4' /&gt;" FuzzySelectorArgument="&lt;wnd cls='TkChild' /&gt;" Guid="d06043aa-d180-42ee-87ab-a05f0cee82c8" InformativeScreenshot="4ee234e72aeae4106e93242a77db2529.png" ScopeSelectorArgument="&lt;wnd app='conversordocx2pdf.exe' cls='TkTopLevel' title='Escolher DOCX' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'OK' - Inserir diretório" sap:VirtualizedContainerService.HintSize="388,157" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8ed51fb0-7a2b-4580-9129-0b1ecbb112d5" Version="V3">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable CvElementArea="107, 85, 82, 27" CvTextArea="139, 92, 18, 12" CvTextArgument="OK" CvType="Button" DesignTimeRectangle="108, 86, 80, 26" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'unchecked'" FullSelectorArgument="&lt;wnd cls='Button' idx='2' /&gt;" FuzzySelectorArgument="&lt;wnd cls='Button' check:text='unchecked' /&gt;" Guid="410c4b85-56ec-43b6-8718-6f4b239f739a" InformativeScreenshot="24ff57dc7092310b03dbb8ecb88781aa.png" ScopeSelectorArgument="&lt;wnd app='conversordocx2pdf.exe' cls='TkTopLevel' title='Escolher DOCX' /&gt;" SearchSteps="Selector, CV" Version="V2" Visibility="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Destino não aparece" sap:VirtualizedContainerService.HintSize="450,205" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <TerminateWorkflow DisplayName="Se a janela de interação demorar para aparescer" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_1" Reason="O conversor de DOCX não funcionou" />
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="0, 0, 387, 125" DesignTimeScaleFactor="1" FriendlyName="'Escolher DOCX'" Guid="a160fd2c-3ca4-409c-bb74-ba27fd42910f" InformativeScreenshot="e0bbf7a191ddd3232bdf9654218b84d8.png" ScopeSelectorArgument="&lt;wnd app='conversordocx2pdf.exe' cls='TkTopLevel' title='Escolher DOCX' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.FuzzySelectorArgument>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" Value="" />
+                    </InArgument>
+                  </uix:TargetAnchorable.FuzzySelectorArgument>
+                </uix:TargetAnchorable>
+              </uix:NCheckState.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NCheckState>
+            <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" Window="{x:Null}" DisplayName="Esperar finalizar" sap:VirtualizedContainerService.HintSize="954,415" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="93dfc2ebaadbfd9a4f5148fe8b6700f4" Selector="&lt;wnd app='conversordocx2pdf.exe' cls='#32770' title='Concluído' /&gt;" TimeoutMS="999999999">
+              <ui:WindowScope.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Fazer" sap:VirtualizedContainerService.HintSize="450,268" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Fechar programa" sap:VirtualizedContainerService.HintSize="388,157" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8ed51fb0-7a2b-4580-9129-0b1ecbb112d5" Version="V3">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable CvElementArea="212, 114, 75, 23" CvTextArea="241, 120, 17, 11" CvTextArgument="OK" CvType="Button" DesignTimeRectangle="212, 114, 75, 23" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'OK'" FullSelectorArgument="&lt;wnd ctrlid='2' title='OK' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='2' title='OK' check:text='OK' /&gt;" Guid="f7556a70-0473-448e-b048-ff617a50629c" InformativeScreenshot="a7b05551917e9f3fb71913c4a1c439fd.png" ScopeSelectorArgument="&lt;wnd app='conversordocx2pdf.exe' cls='#32770' title='Concluído' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                  </Sequence>
+                </ActivityAction>
+              </ui:WindowScope.Body>
+            </ui:WindowScope>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="104, 104, 993, 519" FilePath="Recursos\conversordocx2pdf.exe" IconBase64="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" InformativeScreenshot="ea798f9c7043aa2e1c81a7991ec24770.png" Selector="&lt;wnd app='conversordocx2pdf.exe' cls='ConsoleWindowClass' title='C:\Users\Magno\Documents\UiPath\Tradutor de PDF\Recursos\convers*' /&gt;" Title="C:\Users\Magno\Documents\UiPath\Tradutor de PDF\Recursos\Convers*" />
+      </uix:NApplicationCard.TargetApp>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>
